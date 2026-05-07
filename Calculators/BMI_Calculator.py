@@ -1,3 +1,7 @@
+print("--------------------------------------")
+print("WELCOME TO THE BMI CALCULATOR")
+print("--------------------------------------\n")
+
 weight = float(input ("What is your weight (in kg) : "))
 height = float(input ("What is your height (in m) : "))
 
