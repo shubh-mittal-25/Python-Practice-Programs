@@ -1,5 +1,5 @@
 print("--------------------------------------")
-print("WELCOME TO THE TIP   CALCULATOR")
+print("WELCOME TO THE TIP  CALCULATOR")
 print("--------------------------------------\n")
 
 bill = float(input("What was the total bill? $"))
