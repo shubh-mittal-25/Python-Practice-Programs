@@ -46,6 +46,5 @@ if user_choice >=0 and user_choice <=2:
         print("YOU LOSE!")
     elif user_choice == 2 and computer_choice == 1:
         print("YOU WIN!")
-
 else :
     print("You typed an invalid number, YOU LOSE!")
