@@ -1,5 +1,4 @@
 print ("HCF.\nThe Highest Common Factor (HCF), also known as the Greatest Common Divisor (GCD),\nis the largest positive integer that divides two or more numbers without leaving a remainder\n")
-print ("LCM.\nThe Least Common Multiple (LCM) of two or more integers is the smallest positive integer that is divisible by each of the given numbers.\n")
 
 count = int(input("Enter the how many numbers : "))
 number = []
