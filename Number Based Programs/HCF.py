@@ -1,6 +1,6 @@
 print ("HCF.\nThe Highest Common Factor (HCF), also known as the Greatest Common Divisor (GCD),\nis the largest positive integer that divides two or more numbers without leaving a remainder\n")
 
-count = int(input("Enter the how many numbers : "))
+count = int(input("Enter how many numbers  : "))
 number = []
 hcf = 1
 
