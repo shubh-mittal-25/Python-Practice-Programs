@@ -1,9 +1,9 @@
-# Series : 1 , 2 , 3 , ....... , n
+# Series : 1^n , 2^n , 3^n , ....... , n^n
 
 n = int(input("Enter the number of values : "))
 sum = 0
 for i in range(1,n+1):
-    num = i
-    print(num,end=" , ")
+    num = i**n
+    print(f"{i}^{n}",end=" , ")
     sum += num
 print(f"\nSum = {sum}")
