@@ -8,7 +8,7 @@ chosen_word = random.choice (word_list)
 placeholder = ""
 for position in range(len(chosen_word)):
     placeholder += "_"
-print(placeholder)
+print(f"WORD = {placeholder}")
 
 correct_letters = []
 lives = 9
@@ -18,7 +18,7 @@ while not game_over:
     guess = input("Guess a letter : ").lower()
     if guess in correct_letters:
         print(f"You've already guessed {guess}")
-    display = ""
+    display = "WORD = "
     for letter in chosen_word:
         if letter == guess:
             display += letter
