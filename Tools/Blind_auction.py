@@ -27,8 +27,8 @@ while continue_auction:
 highest_bid = 0
 winner = ""
 for bidder in bids:
-    if bids[bidder] > max:
+    if bids[bidder] > highest_bid:
         highest_bid = bids[bidder]
         winner = bidder
 
-print(f"The winner is {winner} with a bid of ${max}")
+print(f"The winner is {winner} with a bid of ${highest_bid}")
