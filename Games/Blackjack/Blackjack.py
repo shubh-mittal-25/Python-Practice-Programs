@@ -1,4 +1,4 @@
-import random
+import randomyyy
 
 logo = r"""
 .------.            _     _            _    _            _    
