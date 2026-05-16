@@ -3,7 +3,6 @@ import art
 import game_data
 
 def display(a,b):
-    print(art.logo)
     print(f"Compare A : {a['name']}, a {a['description']}, from {a['country']}")
     print(art.vs)
     print(f"Against B : {b['name']}, a {b['description']}, from {b['country']}")
@@ -25,7 +24,7 @@ def compare(followers_1, followers_2):
             return True
     return False
 
-
+print(art.logo)
 item_A = random.choice(game_data.data)
 item_B = random.choice(game_data.data)
 score = 0
