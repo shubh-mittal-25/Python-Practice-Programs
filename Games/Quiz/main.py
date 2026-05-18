@@ -4,9 +4,8 @@ from data import question_data
 from quiz_brain import QuizBrain
 
 question_bank = []
-for i in range(10):
-    n = random.randint(0,199)
-    question = question_data[n]
+random_questions = random.sample(question_data, 10)
+for question in random_questions:
     question_text = question["question"]
     question_answer = question["answer"]
     new_question = Question(question_text, question_answer)
