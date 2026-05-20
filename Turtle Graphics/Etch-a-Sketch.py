@@ -1,7 +1,6 @@
 import turtle
 
 timmy = turtle.Turtle()
-
 screen = turtle.Screen()
 
 def forward():
@@ -18,7 +17,6 @@ def right():
 
 def clear_screen():
     timmy.reset()
-
 
 screen.listen()
 screen.onkey(key="w", fun=forward)

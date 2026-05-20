@@ -6,7 +6,6 @@ timmy = turtle.Turtle()
 timmy.shape("turtle")
 timmy.color("black","red")
 
-
 def draw_shapes(sides):
     angle = 360 / sides
     for _ in range(sides):

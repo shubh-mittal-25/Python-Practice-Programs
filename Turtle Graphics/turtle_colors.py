@@ -39,3 +39,29 @@ colors_against_white =[
     "chocolate", "saddle brown", "hot pink", "deep pink", "medium violet red",
     "magenta", "purple", "dark violet", "blue violet", "indigo"
 ]
+
+colors_against_black = [
+    "gainsboro",
+    "light gray",
+    "tan",
+    "dark goldenrod",
+    "peru",
+    "silver",
+    "dark sea green",
+    "plum4",
+    "olivedrab",
+    "deep sky blue",
+    "cadet blue",
+    "medium aquamarine",
+    "indian red",
+    "pale green",
+    "khaki",
+    "rosy brown",
+    "dark sea green",
+    "steel blue",
+    "silver",
+    "steel blue4",
+    "rosy brown",
+    "rosy brown4",
+    "light blue"
+]
