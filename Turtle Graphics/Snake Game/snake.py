@@ -34,7 +34,6 @@ class Snake:
             new_x = self.segments[seg_num - 1].xcor()
             new_y = self.segments[seg_num - 1].ycor()
             self.segments[seg_num].teleport(new_x, new_y)
-
         self.head.forward(MOVE_DISTANCE)
 
     def up(self):

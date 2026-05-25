@@ -1,4 +1,5 @@
 import turtle
+
 ALIGNMENT = "center"
 FONT = ("Courier", 14, "normal")
 
