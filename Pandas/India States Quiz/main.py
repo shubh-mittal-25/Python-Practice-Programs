@@ -12,8 +12,8 @@ data = pandas.read_csv("states_name.csv")
 all_states = data.State.to_list()
 guessed_states = []
 
-# # Code to get mouse click coordinates on the image
 # def get_mouse_click_coor(x,y):
+#     """Code to get mouse click coordinates on the image"""
 #     print(x,y)
 # turtle.onscreenclick(get_mouse_click_coor)
 
