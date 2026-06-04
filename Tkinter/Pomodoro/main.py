@@ -37,6 +37,11 @@ def countdown(count):
         window.after(1000,countdown, count-1)
     else:
         start_timer()
+        mark = ""
+        work_sessions = math.floor(REPS/2)
+        for _ in range(work_sessions):
+            mark += "✔"
+        checkmark_label.config(text=mark)
 # ---------------------------- UI SETUP -----------------------------------#
 window = Tk()
 window.title("Pomodoro")
@@ -60,7 +65,7 @@ reset_button = Button(text="Reset")
 reset_button.config(font=(FONT_NAME,10) , highlightthickness=0)
 reset_button.grid(row=2, column=2)
 
-checkmark_label = Label(text="✔")
+checkmark_label = Label()
 checkmark_label.config(bg=YELLOW, fg=GREEN, font=(FONT_NAME,15))
 checkmark_label.grid(row=3, column=1)
 
