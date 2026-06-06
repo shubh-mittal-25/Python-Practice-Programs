@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import random
+import json
 import pyperclip
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -24,18 +25,31 @@ def save():
     website_name = website_textField.get()
     email = email_textField.get()
     password_text = password_textField.get()
+    new_data = {
+        website_name : {
+            "email" : email,
+            "password" : password_text,
+        }
+    }
     if website_name == "" or email == "" or password_text == "":
         messagebox.showerror("Error", "Please enter all fields")
     else:
-        is_ok = messagebox.askokcancel(title=website_name, message=f"These are the details entered:\n"
-                                                           f"Email: {email}\n"
-                                                           f"Password: {password_text}\n"
-                                                           f"Is it okay to save?")
-        if is_ok:
-            with open("data.txt", "a") as file:
-                file.write(f"{website_name} | {email} | {password_text} \n")
+        try:
+            with open("data.json", "r") as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            with open("data.json", "w") as file:
+                json.dump(new_data, file, indent=4)
+        else:
+            data.update(new_data)
+            with open("data.json", "w") as file:
+                json.dump(data, file, indent=4)
+        finally:
             website_textField.delete(0, "end")
             password_textField.delete(0, "end")
+# ---------------------------- SEARCH WEBSITE ------------------------------- #
+def search():
+    website_name = website_textField.get()
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -56,9 +70,9 @@ label3 = Label(text="Password : ", bg="white", font=("Arial", 12))
 label3.grid(column=0, row=3)
 
 #ENTRY
-website_textField = Entry(width=50)
+website_textField = Entry(width=32)
 website_textField.focus()
-website_textField.grid(column=1, row=1, columnspan=2)
+website_textField.grid(column=1, row=1)
 email_textField = Entry(width=50)
 email_textField.insert(0, "shubh_mittal_125")
 email_textField.grid(column=1, row=2, columnspan=2)
@@ -71,5 +85,8 @@ gen_pass_button.grid(column=2, row=3)
 
 add_button = Button(text="Add", width = 43, command = save)
 add_button.grid(column=1, row=4, columnspan=2)
+
+search_button = Button(text="Search", width = 14)
+search_button.grid(column=2, row=1)
 
 window.mainloop()
