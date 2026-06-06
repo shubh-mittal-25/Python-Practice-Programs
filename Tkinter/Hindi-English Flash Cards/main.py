@@ -5,8 +5,13 @@ import random
 BACKGROUND_COLOR = "#B1DDC6"
 DELAY = 5
 
-data = pandas.read_csv("data/Hindi_to_English.csv")
-to_learn = data.to_dict(orient="records")
+try:
+    data = pandas.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    original_data = pandas.read_csv("data/Hindi_to_English.csv")
+    to_learn = original_data.to_dict(orient="records")
+else:
+    to_learn = data.to_dict(orient="records")
 current_card = {}
 # <----------------------------NEW FLASH CARDS------------------------------->
 def countdown(seconds):
@@ -35,7 +40,11 @@ def flip_card():
     canvas.itemconfig(word, text=new_word)
     canvas.itemconfig(background, image=english_img)
 
-def is
+def is_known():
+    to_learn.remove(current_card)
+    n_data = pandas.DataFrame(to_learn)
+    n_data.to_csv("data/words_to_learn.csv")
+    flash_card()
 # <----------------------------UI DESIGN------------------------------------->
 window = Tk()
 window.title("Hindi to English Flash Cards")
