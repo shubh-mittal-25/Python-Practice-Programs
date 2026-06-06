@@ -47,9 +47,22 @@ def save():
         finally:
             website_textField.delete(0, "end")
             password_textField.delete(0, "end")
+
 # ---------------------------- SEARCH WEBSITE ------------------------------- #
 def search():
     website_name = website_textField.get()
+    try:
+        with open("data.json", "r") as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        messagebox.showinfo("Error", "No Data File Found")
+    else:
+        if website_name in data:
+            messagebox.showinfo(website_name, f"Email/Username : {data[website_name]["email"]}\n"
+                                              f"Password : {data[website_name]["password"]}\n")
+            pyperclip.copy(data[website_name]["password"])
+        else:
+            messagebox.showinfo("Not Found", f"No details for {website_name} exists")
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -86,7 +99,7 @@ gen_pass_button.grid(column=2, row=3)
 add_button = Button(text="Add", width = 43, command = save)
 add_button.grid(column=1, row=4, columnspan=2)
 
-search_button = Button(text="Search", width = 14)
+search_button = Button(text="Search", width = 14, command=search)
 search_button.grid(column=2, row=1)
 
 window.mainloop()
