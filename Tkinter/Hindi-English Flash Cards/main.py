@@ -43,7 +43,7 @@ def flip_card():
 def is_known():
     to_learn.remove(current_card)
     n_data = pandas.DataFrame(to_learn)
-    n_data.to_csv("data/words_to_learn.csv")
+    n_data.to_csv("data/words_to_learn.csv", index=False)
     flash_card()
 # <----------------------------UI DESIGN------------------------------------->
 window = Tk()
