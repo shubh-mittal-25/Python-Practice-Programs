@@ -26,4 +26,3 @@ if day_hour == 8:
             to_addrs=sender,
             msg=f"Subject:Motivational Quote of the day\n\n{today_quote}"
         )
-
