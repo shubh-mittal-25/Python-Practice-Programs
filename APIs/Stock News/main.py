@@ -9,6 +9,7 @@ COMPANY_NAME = "Tesla Inc"
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 stock_api_key = os.getenv("STOCK_API_KEY")
+news_api_key = os.getenv("NEWS_API_KEY")
 
 stock_params = {
     "function": "TIME_SERIES_DAILY",
@@ -27,18 +28,18 @@ day_before_yesterday_closing_price = day_before_yesterday_data["4. close"]
 
 difference = abs(float(yesterday_closing_price) - float(day_before_yesterday_closing_price))
 diff_percent = (difference / float(yesterday_closing_price)) * 100
-print(difference)
+print(diff_percent)
 
-if diff_percent > 5:
-    print("GET NEWS")
-
-    ## STEP 2: https://newsapi.org/ 
-    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
-
-#TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
-
-#TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
-
+if diff_percent > 1:
+    news_parameters = {
+        "apiKey": news_api_key,
+        "qInTitle": COMPANY_NAME,
+    }
+    news_response = requests.get(url=NEWS_ENDPOINT, params=news_parameters)
+    news_response.raise_for_status()
+    articles = news_response.json()["articles"]
+    three_articles = articles[:3]
+    print(three_articles)
 
     ## STEP 3: Use twilio.com/docs/sms/quickstart/python
     #to send a separate message with each article's title and description to your phone number. 
