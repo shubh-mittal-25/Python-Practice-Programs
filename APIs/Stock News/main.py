@@ -44,8 +44,8 @@ if diff_percent > 1:
     news_response.raise_for_status()
     articles = news_response.json()["articles"]
     three_articles = articles[:3]
-    formatted_arrticles_list = [f"Headline : {article['title']}.\nBrief: {article['description']}" for article in three_articles]
-    for article in formatted_arrticles_list:
+    formatted_articles_list = [f"Headline : {article['title']}.\nBrief: {article['description']}" for article in three_articles]
+    for article in formatted_articles_list:
         print(f"{STOCK_NAME} : {updown} {diff_percent}%")
         print(article)
         print("\n")
