@@ -26,9 +26,14 @@ yesterday_closing_price = yesterday_data["4. close"]
 day_before_yesterday_data = data_list[1]
 day_before_yesterday_closing_price = day_before_yesterday_data["4. close"]
 
-difference = abs(float(yesterday_closing_price) - float(day_before_yesterday_closing_price))
-diff_percent = (difference / float(yesterday_closing_price)) * 100
-print(diff_percent)
+difference = float(yesterday_closing_price) - float(day_before_yesterday_closing_price)
+updown = None
+if difference > 0:
+    updown = "🔺"
+else:
+    updown = "🔻"
+difference = abs(difference)
+diff_percent = round((difference / float(yesterday_closing_price)) * 100)
 
 if diff_percent > 1:
     news_parameters = {
@@ -39,25 +44,10 @@ if diff_percent > 1:
     news_response.raise_for_status()
     articles = news_response.json()["articles"]
     three_articles = articles[:3]
-    print(three_articles)
+    formatted_arrticles_list = [f"Headline : {article['title']}.\nBrief: {article['description']}" for article in three_articles]
+    for article in formatted_arrticles_list:
+        print(f"{STOCK_NAME} : {updown} {diff_percent}%")
+        print(article)
+        print("\n")
 
-    ## STEP 3: Use twilio.com/docs/sms/quickstart/python
-    #to send a separate message with each article's title and description to your phone number. 
-
-#TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
-
-#TODO 9. - Send each article as a separate message via Twilio. 
-
-
-
-#Optional TODO: Format the message like this: 
-"""
-TSLA: 🔺2%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-or
-"TSLA: 🔻5%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-"""
 
