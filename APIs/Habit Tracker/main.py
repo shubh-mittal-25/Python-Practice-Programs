@@ -1,10 +1,12 @@
 import requests
 import os
 import dotenv
+from datetime import datetime
 
 dotenv.load_dotenv()
 api_key = os.getenv("API_KEY")
 username = os.getenv("PIXELA_USERNAME")
+graph_id = os.getenv("GRAPH_ID")
 #-----------------------CREATE ACCOUNT---------------------------------------
 pixela_endpoint = "https://pixe.la/v1/users"
 # user_parameters = {
@@ -20,9 +22,9 @@ pixela_endpoint = "https://pixe.la/v1/users"
 #-----------------------CREATE GRAPH---------------------------------------
 # graph_endpoint = f"{pixela_endpoint}/{username}/graphs"
 # print(username)
-# headers = {"X-USER-TOKEN": str(api_key)}
+headers = {"X-USER-TOKEN": str(api_key)}
 # graph_parameters = {
-#     "id": "graph1",
+#     "id": graph_id,
 #     "name": "Cycling Graph",
 #     "unit": "Km",
 #     "type": "float",
@@ -32,4 +34,12 @@ pixela_endpoint = "https://pixe.la/v1/users"
 # response = requests.post(url=graph_endpoint, json=graph_parameters, headers=headers)
 # print(response.text)
 
+#-----------------------POST VALUE TO GRAPH---------------------------------------
+value_endpoint = f"{pixela_endpoint}/{username}/graphs/{graph_id}"
+today = datetime.now()
 
+km:str = input("How many kilometers did you cycle today? : ")
+parameters={
+    "date": today.strftime("%Y%m%d"),
+    "quantity": km,
+}
