@@ -37,9 +37,25 @@ headers = {"X-USER-TOKEN": str(api_key)}
 #-----------------------POST VALUE TO GRAPH---------------------------------------
 value_endpoint = f"{pixela_endpoint}/{username}/graphs/{graph_id}"
 today = datetime.now()
+today = today.strftime("%Y%m%d")
 
 km:str = input("How many kilometers did you cycle today? : ")
 parameters={
-    "date": today.strftime("%Y%m%d"),
+    "date": today,
     "quantity": km,
 }
+
+response = requests.post(value_endpoint, headers=headers, json=parameters)
+print(response.text)
+
+# #-----------------------UPDATE VALUE TO GRAPH---------------------------------------
+#
+# update_endpoint = f"{pixela_endpoint}/{username}/graphs/{graph_id}/{today}"
+# new_data = {
+#     "quantity": "6.8", }
+#
+# requests.put(update_endpoint, headers=headers, json=new_data)
+#
+# #-----------------------DELETE VALUE TO GRAPH---------------------------------------
+# delete_endpoint = f"{pixela_endpoint}/{username}/graphs/{graph_id}/{today}"
+# requests.delete(delete_endpoint, headers=headers)
