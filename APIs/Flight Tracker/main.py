@@ -20,17 +20,22 @@ tomorrow = datetime.now() + timedelta(days=1)
 six_months_from_today = datetime.now() + timedelta(days=(6*30))
 
 flight_search = FlightSearch()
-flights = flight_search.check_flights(
-    origin_city_code="LHR",
-    destination_city_code="CDG",
-    from_time=tomorrow,
-    to_time=six_months_from_today,
-)
-pprint(flights)
 
-cheapest_flight = find_cheapest_flight(flights, return_date=six_months_from_today.strftime("%Y-%m-%d"))
-pprint(f"{sheet_data[0]['city']}: GBP {cheapest_flight.price}")
+ORIGIN_CITY_IATA = "DEL"
 
-if cheapest_flight.price != "N/A" and cheapest_flight.price < sheet_data[0]["lowestPrice"]:
-    pprint(f"Lower price flight found to {sheet_data[0]['city']}!")
-    data_manager.update_lowest_price(sheet_data[0]["id"], cheapest_flight.price)
+for destination in sheet_data:
+    pprint(f"Getting flights for {destination['city']}.....")
+    flights = flight_search.check_flights(
+        ORIGIN_CITY_IATA,
+        destination["iataCode"],
+        from_time=tomorrow,
+        to_time=six_months_from_today,
+    )
+
+
+    cheapest_flight = find_cheapest_flight(flights, return_date=six_months_from_today.strftime("%Y-%m-%d"))
+    pprint(f"{sheet_data[0]['city']}: GBP {cheapest_flight.price}")
+
+    if cheapest_flight.price != "N/A" and cheapest_flight.price < sheet_data[0]["lowestPrice"]:
+        pprint(f"Lower price flight found to {sheet_data[0]['city']}!")
+        data_manager.update_lowest_price(sheet_data[0]["id"], cheapest_flight.price)
