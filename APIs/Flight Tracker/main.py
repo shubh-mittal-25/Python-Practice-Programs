@@ -34,8 +34,16 @@ for destination in sheet_data:
 
 
     cheapest_flight = find_cheapest_flight(flights, return_date=six_months_from_today.strftime("%Y-%m-%d"))
-    pprint(f"{sheet_data[0]['city']}: GBP {cheapest_flight.price}")
+    pprint(f"{destination['city']}: GBP {cheapest_flight.price}")
 
-    if cheapest_flight.price != "N/A" and cheapest_flight.price < sheet_data[0]["lowestPrice"]:
-        pprint(f"Lower price flight found to {sheet_data[0]['city']}!")
-        data_manager.update_lowest_price(sheet_data[0]["id"], cheapest_flight.price)
+    if cheapest_flight.price != "N/A" and cheapest_flight.price < destination["lowestPrice"]:
+        pprint(f"Lower price flight found to {destination['city']}!")
+        data_manager.update_lowest_price(destination["id"], cheapest_flight.price)
+
+    message = f"""
+    Low price alert! Only GBP {cheapest_flight.price} to fly 
+    from {cheapest_flight.origin_airport} to {cheapest_flight.destination_airport},
+    on {cheapest_flight.out_date} until {cheapest_flight.return_date}.
+    """
+
+    print(message)
