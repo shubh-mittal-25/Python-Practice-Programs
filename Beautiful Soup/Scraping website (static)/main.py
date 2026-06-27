@@ -1,20 +1,21 @@
 from bs4 import BeautifulSoup
 import requests
 
-response = requests.get("https://appbrewery.github.io/news.ycombinator.com/")
+response = requests.get("https://news.ycombinator.com/news")
 webpage = response.text
 
 soup = BeautifulSoup(webpage, "html.parser")
-articles = soup.find_all("a", class_="storylink")
+articles = soup.find_all("span", class_="titleline")
 article_texts = []
 article_links = []
 for article_tag in articles:
-    text = article_tag.getText()
+    anchor = article_tag.find("a")
+    text = anchor.getText()
     article_texts.append(text)
-    link = article_tag.get("href")
+    link = anchor.get("href")
     article_links.append(link)
 
-article_upvotes = [score.getText() for score in soup.find_all("span", class_="score")]
+article_upvotes = [int(score.getText().split()[0]) for score in soup.find_all("span", class_="score")]
 
 print(article_texts)
 print(article_links)
