@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
+from Games.Higher_Lower import art
+
 response = requests.get("https://news.ycombinator.com/news")
 webpage = response.text
 
@@ -20,3 +22,13 @@ article_upvotes = [int(score.getText().split()[0]) for score in soup.find_all("s
 print(article_texts)
 print(article_links)
 print(article_upvotes)
+
+most_upvotes = max(article_upvotes)
+index = article_upvotes.index(most_upvotes)
+
+print(f"""
+Article with most upvotes :
+{article_texts[index]}
+{article_links[index]}
+{article_upvotes[index]}
+""")
