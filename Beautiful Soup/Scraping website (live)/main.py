@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 
-from Games.Higher_Lower import art
-
 response = requests.get("https://news.ycombinator.com/news")
 webpage = response.text
 
@@ -30,5 +28,5 @@ print(f"""
 Article with most upvotes :
 {article_texts[index]}
 {article_links[index]}
-{article_upvotes[index]}
+{article_upvotes[index] }
 """)
