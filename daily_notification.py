@@ -1,7 +1,6 @@
 import os
 import smtplib
 import random
-import datetime
 import requests
 
 MY_LAT = 28.350215

@@ -6,7 +6,7 @@ with open("website.html") as file:
 soup = BeautifulSoup(contents, "html.parser")
 print(soup.title)
 print(soup.title.name)
-print(soup.title.string)
+print(soup.title.getText())
 
 all_anchor_tags = soup.find_all(name='a')
 
