@@ -11,8 +11,6 @@ top_100_list = [song.getText() for song in soup.find_all('h3' , class_='chart-en
 print(top_100_list)
 
 yt = YTMusic("browser.json")
-playlists = yt.get_library_playlists()
-print(f"Found {len(playlists)} playlists in your library.")
 
 PLAYLIST_NAME = f"{date} Billboard 100"
 
@@ -36,7 +34,7 @@ else:
     print("Playlist created.")
 
     # Search and add each song
-    for song in song_names:
+    for song in top_100_list:
         try:
             search_results = yt.search(song, filter="songs", limit=1)
             yt.add_playlist_items(playlist_id, [search_results[0]["videoId"]])
