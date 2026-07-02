@@ -34,3 +34,12 @@ else:
         privacy_status="PRIVATE",
     )
     print("Playlist created.")
+
+    # Search and add each song
+    for song in song_names:
+        try:
+            search_results = yt.search(song, filter="songs", limit=1)
+            yt.add_playlist_items(playlist_id, [search_results[0]["videoId"]])
+            print(f"Added: {song}")
+        except Exception as e:
+            print(f"Skipped: {song} | Reason: {e}")
