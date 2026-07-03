@@ -4,18 +4,17 @@ import os
 import dotenv
 import smtplib
 
-BUY_PRICE = 100
+BUY_PRICE = 1000
 dotenv.load_dotenv()
 sender = os.getenv("SENDER_EMAIL")
 password = os.getenv("PASSWORD")
-
-response = requests.get("https://appbrewery.github.io/instant_pot/")
+url = "https://www.amazon.in/VAYA-Hautechef-Pre-Seasoned-Cast-Kadhai/dp/B0F44BLP6X/?_encoding=UTF8&ref_=pd_hp_d_btf_LPDEALS"
+response = requests.get(url)
 webpage = response.text
 
 soup = BeautifulSoup(webpage, "html.parser")
-price = float(f"{soup.find("span", class_="a-price-whole").getText()}{soup.find("span", class_="a-price-fraction").getText()}")
+price = float(soup.find("span", class_="a-price-whole").getText())
 title = soup.find(id="productTitle").get_text().strip()
-
 
 if price < BUY_PRICE:
     message = f"{title} is on sale for {price}!"
@@ -25,5 +24,5 @@ if price < BUY_PRICE:
         connection.sendmail(
             from_addr=sender,
             to_addrs=sender,
-            msg=f"Subject:Amazon Price Alert!\n\n{message}\nURL".encode("utf-8")
+            msg=f"Subject:Amazon Price Alert!\n\n{message}\n{url}".encode("utf-8")
         )
