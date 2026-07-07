@@ -1,2 +1,3 @@
-2026/07/07-16:49:05.994 1e44 Creating DB C:\Users\shubh\PycharmProjects\Python-Practice-Programs\Automation\Gym Booking\chrome_profile\Default\Sync Data\LevelDB since it was missing.
-2026/07/07-16:49:06.006 1e44 Reusing MANIFEST C:\Users\shubh\PycharmProjects\Python-Practice-Programs\Automation\Gym Booking\chrome_profile\Default\Sync Data\LevelDB/MANIFEST-000001
+2026/07/07-17:23:36.194 5468 Reusing MANIFEST C:\Users\shubh\PycharmProjects\Python-Practice-Programs\Automation\Gym Booking\chrome_profile\Default\Sync Data\LevelDB/MANIFEST-000001
+2026/07/07-17:23:36.195 5468 Recovering log #3
+2026/07/07-17:23:36.195 5468 Reusing old log C:\Users\shubh\PycharmProjects\Python-Practice-Programs\Automation\Gym Booking\chrome_profile\Default\Sync Data\LevelDB/000003.log 

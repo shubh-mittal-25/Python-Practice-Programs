@@ -1,5 +1,3 @@
-2026/07/07-16:49:07.608 458c Creating DB C:\Users\shubh\PycharmProjects\Python-Practice-Programs\Automation\Gym Booking\chrome_profile\Default\IndexedDB\https_appbrewery.github.io_0.indexeddb.leveldb since it was missing.
-2026/07/07-16:49:07.613 458c Reusing MANIFEST C:\Users\shubh\PycharmProjects\Python-Practice-Programs\Automation\Gym Booking\chrome_profile\Default\IndexedDB\https_appbrewery.github.io_0.indexeddb.leveldb/MANIFEST-000001
-2026/07/07-16:49:08.178 30e8 Level-0 table #5: started
-2026/07/07-16:49:08.193 30e8 Level-0 table #5: 852194 bytes OK
-2026/07/07-16:49:08.195 30e8 Delete type=0 #3
+2026/07/07-17:23:36.707 3004 Reusing MANIFEST C:\Users\shubh\PycharmProjects\Python-Practice-Programs\Automation\Gym Booking\chrome_profile\Default\IndexedDB\https_appbrewery.github.io_0.indexeddb.leveldb/MANIFEST-000001
+2026/07/07-17:23:36.708 3004 Recovering log #4
+2026/07/07-17:23:36.732 3004 Reusing old log C:\Users\shubh\PycharmProjects\Python-Practice-Programs\Automation\Gym Booking\chrome_profile\Default\IndexedDB\https_appbrewery.github.io_0.indexeddb.leveldb/000004.log 
