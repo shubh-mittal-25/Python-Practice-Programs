@@ -21,17 +21,27 @@ driver.get(gym_url)
 
 wait = WebDriverWait(driver, 2)
 
-login_button=wait.until(ec.element_to_be_clickable((By.ID, "login-button")))
-login_button.click()
+try:
+    login_button=wait.until(ec.element_to_be_clickable((By.ID, "login-button")))
+    login_button.click()
+except:
+    print("Login button click failed")
+else:
+    print("Login button click succeeded")
 
-email_input = wait.until(ec.presence_of_element_located((By.ID, "email-input")))
-email_input.clear()
-email_input.send_keys(username)
-password_input = driver.find_element(By.ID, "password-input")
-password_input.clear()
-password_input.send_keys(password)
+try:
+    email_input = wait.until(ec.presence_of_element_located((By.ID, "email-input")))
+    email_input.clear()
+    email_input.send_keys(username)
+    password_input = driver.find_element(By.ID, "password-input")
+    password_input.clear()
+    password_input.send_keys(password)
+    submit_btn = driver.find_element(By.ID, "submit-button")
+    submit_btn.click()
+except:
+    print("Login failed")
+else:
+    print("Login succeeded")
 
-submit_btn = driver.find_element(By.ID, "submit-button")
-submit_btn.click()
 
 wait.until(ec.presence_of_element_located((By.ID, "schedule-page")))
