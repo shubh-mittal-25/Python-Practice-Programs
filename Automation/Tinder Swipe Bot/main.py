@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import ElementClickInterceptedException, NoSuchElementException
 from time import sleep
 
 load_dotenv()
@@ -45,3 +46,20 @@ not_interested.click()
 sleep(2)
 accept_btn = driver.find_element(By.XPATH, "/html/body/main/div/div/form/button")
 accept_btn.click()
+
+swipes = 0
+while swipes < 20:
+    sleep(1)
+    try:
+        like_btn = driver.find_element(By.XPATH, '//*[@id="like-button-container"]/form/button')
+        like_btn.click()
+        swipes += 1
+        print(f"Swiped {swipes} times")
+    except ElementClickInterceptedException:
+        try:
+            driver.find_element(By.CSS_SELECTOR, value='.match-popup a').click()
+        except NoSuchElementException:
+            pass
+    except NoSuchElementException:
+        sleep(2)
+
