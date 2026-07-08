@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+from selenium.common.exceptions import NoSuchElementException
 import os
 import dotenv
 import time
@@ -96,3 +97,31 @@ Total Tuesday 6 PM Classes Processed : {booked_count + waitlist_count + already_
 """)
 for classes in processed_classes:
     print(classes)
+
+total_booked = booked_count + waitlist_count + already_booked_count
+print("\n\nVERIFYING ON MY BOOKINGS PAGE")
+
+my_bookings_link = driver.find_element(By.ID, "my-bookings-link")
+my_bookings_link.click()
+verified_count = 0
+
+all_cards = driver.find_elements(By.CSS_SELECTOR, "div[id*='card-']")
+for card in all_cards:
+    try:
+        when_para = card.find_element(By.XPATH, ".//p[strong[text()='When:']]")
+        when_text = when_para.text
+        if ("Tue" in when_text or "Thu" in when_text) and "6:00 PM" in when_text:
+            class_name = card.find_element(By.TAG_NAME, "h3").text
+            print(f"✓ Verified : {class_name}")
+            verified_count += 1
+    except NoSuchElementException:
+        pass
+
+print(f"""
+Expected : {total_booked} bookings
+Verified : {verified_count} bookings""")
+
+if total_booked == verified_count:
+    print("✅ SUCCESS: All bookings verified!")
+else:
+    print(f"❌ MISMATCH: Missing {total_booked - verified_count} bookings")
