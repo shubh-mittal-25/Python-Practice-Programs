@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import ElementClickInterceptedException
 from time import sleep
 
 load_dotenv()
@@ -55,7 +56,15 @@ class InstaFollower:
             sleep(1)
 
     def follow(self):
-        pass
+        all_buttons = self.driver.find_elements(By.CSS_SELECTOR, ".followers-scroll button")
+        for button in all_buttons:
+            try:
+                button.click()
+                print("Follow")
+                sleep(1)
+            except ElementClickInterceptedException:
+                cancel = self.driver.find_element(By.XPATH, "//button[contains(text(), 'Cancel')]")
+                cancel.click()
 
 bot = InstaFollower()
 bot.login()
