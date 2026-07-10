@@ -8,7 +8,7 @@ from time import sleep
 load_dotenv()
 username = str(os.getenv("SAN_EMAIL"))
 password = str(os.getenv("SAN_PASSWORD"))
-SIMILAR_ACCOUNT = ("chefsteps")
+SIMILAR_ACCOUNT = "elaineducasse"
 URL = "https://app.100daysofpython.dev/services/share-a-naan/login"
 
 class InstaFollower:
@@ -43,6 +43,7 @@ class InstaFollower:
         sleep(1)
         search_field = self.driver.find_element(By.CLASS_NAME, "naan-search-input")
         search_field.send_keys(SIMILAR_ACCOUNT)
+        sleep(2)
         select_btn = self.driver.find_element(By.CLASS_NAME, "naan-search-row")
         select_btn.click()
         sleep(1)
