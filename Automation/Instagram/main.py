@@ -37,7 +37,22 @@ class InstaFollower:
             notifications[0].click()
 
     def find_followers(self):
-        pass
+        search_btn = self.driver.find_element(By.CLASS_NAME, "naan-rail-item")
+        search_btn.click()
+        sleep(1)
+        search_field = self.driver.find_element(By.CLASS_NAME, "naan-search-input")
+        search_field.send_keys(SIMILAR_ACCOUNT)
+        select_btn = self.driver.find_element(By.CLASS_NAME, "naan-search-row")
+        select_btn.click()
+        sleep(1)
+        followers_btn = self.driver.find_element(By.CLASS_NAME, "naan-followers-link")
+        followers_btn.click()
+        sleep(1)
+        modal = self.driver.find_element(By.CSS_SELECTOR, ".followers-scroll")
+        for _ in range(10):
+            # "scroll this element to the bottom" → loads the next batch of followers
+            self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", modal)
+            sleep(1)
 
     def follow(self):
         pass
