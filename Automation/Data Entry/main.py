@@ -2,6 +2,9 @@ import os
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 import requests
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
 
 load_dotenv()
 form_url = str(os.getenv("FORM_URL"))
@@ -43,3 +46,9 @@ for price in all_price_elements:
 print(len(all_price))
 print(all_price)
 print("\n-----------------------------------------------------------\n")
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_experimental_option("detach", True)
+driver = webdriver.Chrome(options=chrome_options)
+
+driver.get(form_url)
