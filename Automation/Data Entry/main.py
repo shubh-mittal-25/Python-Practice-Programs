@@ -16,10 +16,30 @@ data = response.text
 soup = BeautifulSoup(data, "html.parser")
 
 all_link_elements = soup.select(".StyledPropertyCardDataWrapper a")
-print(all_link_elements)
+all_links = []
+for link in all_link_elements:
+    all_links.append(link["href"])
+print(len(all_links))
+print(all_links)
+print("\n-----------------------------------------------------------\n")
 
 all_address_elements = soup.select(".StyledPropertyCardDataWrapper address")
-print(all_address_elements)
+all_address = []
+for address in all_address_elements:
+    add = address.getText()
+    add = add.strip()
+    add = add.replace(" | ", " ")
+    all_address.append(add)
+print(len(all_address))
+print(all_address)
+print("\n-----------------------------------------------------------\n")
 
 all_price_elements = soup.select(".PropertyCardWrapper span")
-print(all_price_elements)
+all_price = []
+for price in all_price_elements:
+    p = price.getText()
+    p = p.replace("/mo", "").split("+")[0]
+    all_price.append(p)
+print(len(all_price))
+print(all_price)
+print("\n-----------------------------------------------------------\n")
