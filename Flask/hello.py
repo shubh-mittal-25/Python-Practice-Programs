@@ -5,11 +5,15 @@ print(__name__)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "Hello, World!"
 
 @app.route("/bye")
 def say_bye():
-    return "<p>Bye, World!</p>"
+    return "Bye, World!"
+
+@app.route("/username/<name>")
+def greet(name):
+    return f"Hello, {name}!"
 
 if __name__ == "__main__":
     app.run(debug=True)
